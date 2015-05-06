@@ -1,0 +1,9 @@
+---
+ - name: Web Servers Basic
+   hosts: all
+   user: root
+
+   tasks:
+     - include: tasks/firewall.yml
+     - include: tasks/nginx.yml
+     - include: tasks/index_page.yml
