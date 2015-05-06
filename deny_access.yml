@@ -1,0 +1,8 @@
+---
+ - name: Deny Services
+   hosts: all
+   user: root
+
+   tasks:
+    - name: Deny HTTP
+      ufw: rule=deny port=80
