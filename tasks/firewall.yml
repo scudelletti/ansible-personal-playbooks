@@ -1,8 +1,17 @@
 - name: Set Firewall Default Policy
-  ufw: state=enabled policy=reject
+  ufw: state=enabled policy=deny
 
 - name: Allow SSH
   ufw: rule=allow port=22
 
-- name: Allow HTTP
-  ufw: rule=allow port=80
+- name: Allow Rancher
+  ufw: rule=deny port=8080
+
+- name: Allow Jenkins
+  ufw: rule=reject port=9090
+
+- name: Allow Host Rancher 1
+  ufw: rule=allow proto=udp port=500
+
+- name: Allow Host Rancher 2
+  ufw: rule=allow proto=udp port=4500

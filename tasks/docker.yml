@@ -1,0 +1,20 @@
+- name: Add APT Repository Key
+  apt_key: keyserver=p80.pool.sks-keyservers.net id=58118E89F3A912897C070ADBF76221572C52609D
+
+- name: Add official APT Repository
+  apt_repository: repo='deb https://apt.dockerproject.org/repo ubuntu-trusty main' state=present
+
+- name: Purge lxc-docker
+  apt: name=lxc-docker purge=yes state=absent update_cache=yes
+
+- name: Install Linux Image Extra
+  apt: name=linux-image-extra-3.13.0-32-generic state=latest update_cache=yes
+
+- name: Install AppArmor
+  apt: name=apparmor state=latest update_cache=yes
+
+- name: Install Docker Engine
+  apt: name=docker-engine state=latest update_cache=yes
+
+- name: Start Docker Engine
+  service: name=docker state=started
